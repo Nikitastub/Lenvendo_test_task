@@ -7,7 +7,7 @@ class Application:
         self.action = UiActionHelper(self)
         self.base_url = base_url
 
-    def open_home_page(self):
+    def open_main_page(self):
         wd = self.wd
         wd.get(self.base_url)
 

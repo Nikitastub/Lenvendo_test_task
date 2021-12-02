@@ -8,42 +8,30 @@ class UiActionHelper():
 
     def create_new_sending(self):
         wd = self.app.wd
-        self.fill_form_from()
-        self.fill_form_to()
+        self.fill_form("name", "email")
+        self.fill_form("name1", "email1")
         wd.find_element_by_css_selector('button[type="submit"]').click()
+
+    def fill_form(self, name_id, email_id):
+        wd = self.app.wd
+        rand_data = self.random_data(7)
+        name_from = wd.find_element_by_css_selector('#{}'.format(name_id))
+        name_from.click()
+        name_from.clear()
+        name_from.send_keys('{}'.format(rand_data[0]))
+        email_from = wd.find_element_by_css_selector('#{}'.format(email_id))
+        email_from.click()
+        email_from.clear()
+        email_from.send_keys('{}'.format(rand_data[1]))
 
     def get_url(self):
         wd = self.app.wd
         url = wd.current_url
         return url
 
-    def fill_form_from(self):
-        wd = self.app.wd
-        wd.find_element_by_css_selector('#name').click()
-        wd.find_element_by_css_selector('#name').clear()
-        wd.find_element_by_css_selector('#name').send_keys(self.random_string(7))
-        wd.find_element_by_css_selector('#email').click()
-        wd.find_element_by_css_selector('#email').clear()
-        wd.find_element_by_css_selector('#email').send_keys(self.random_email(7))
-
-    def fill_form_to(self):
-        wd = self.app.wd
-        wd.find_element_by_css_selector('#name1').click()
-        wd.find_element_by_css_selector('#name1').clear()
-        wd.find_element_by_css_selector('#name1').send_keys(self.random_string(7))
-        wd.find_element_by_css_selector('#email1').click()
-        wd.find_element_by_css_selector('#email1').clear()
-        wd.find_element_by_css_selector('#email1').send_keys(self.random_email(7))
-
-    def get_final_url(self):
-        wd = self.app.wd
-        final_url = wd.current_url
-        return final_url
-
-    def random_string(self, maxlen):
+    def random_data(self, maxlen):
         symbols = string.ascii_letters + string.digits
-        return "".join([random.choice(symbols) for i in range(random.randrange(1, maxlen))])
+        random_name = "".join([random.choice(symbols) for i in range(random.randrange(1, maxlen))])
+        random_email = "".join([random.choice(symbols) for i in range(random.randrange(1, maxlen))]) + '@' + 'mail.ru'
+        return [random_name, random_email]
 
-    def random_email(self, maxlen):
-        symbols = string.ascii_letters + string.digits
-        return "".join([random.choice(symbols) for i in range(random.randrange(1, maxlen))]) + '@' + 'mail.ru'
