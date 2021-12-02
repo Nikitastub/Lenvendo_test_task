@@ -1,0 +1,4 @@
+pytest
+selemium
+allure-pytest
+requests
