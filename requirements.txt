@@ -2,3 +2,4 @@ pytest
 selemium
 allure-pytest
 requests
+jsonpickle
