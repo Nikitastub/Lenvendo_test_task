@@ -1,5 +1,6 @@
 import pytest
 from fixture.application import Application
+from fixture.api_action import ApiActionHelper
 import jsonpickle
 import os.path
 
@@ -14,6 +15,11 @@ def app(request):
         fixture.destroy()
     request.addfinalizer(fin)
     return fixture
+
+@pytest.fixture()
+def api():
+    apifixture = ApiActionHelper(base_url='https://www.lenvendo.ru/api/js-test-task/')
+    return apifixture
 
 def pytest_generate_tests(metafunc):
     for fixture in metafunc.fixturenames:

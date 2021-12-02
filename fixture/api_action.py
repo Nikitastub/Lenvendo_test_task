@@ -1,8 +1,14 @@
 import requests
 
-def get_response(search='Huawei', sort_field='price'):
-    req = requests.get("https://www.lenvendo.ru/api/js-test-task/?search={}&sort_field={}".format(search, sort_field))
-    res = req.json()
-    products = res['products']
-    sub_string = search
-    return (products, sub_string)
+class ApiActionHelper:
+
+    def __init__(self, base_url):
+        self.base_url = base_url
+
+    def get(self):
+        payload = {'search': 'Huawei', 'sort_field': 'price'}
+        response = ((requests.get(url=self.base_url, params=payload)).json())
+        sub_string = payload['search']
+        return response, sub_string
+
+

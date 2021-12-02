@@ -23,6 +23,10 @@ class UiActionHelper():
         email_from.clear()
         email_from.send_keys('{}'.format(email))
 
+    def bottom_scroll(self):
+        wd = self.app.wd
+        wd.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
     def get_url(self):
         wd = self.app.wd
         url = wd.current_url

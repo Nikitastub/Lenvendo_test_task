@@ -1,11 +1,9 @@
-from fixture import api_action
-import allure
 
-@allure.severity('critical')
-def test_api():
+def test_api(api):
     check_brand_list = []
     price_list = []
-    products, sub_string = api_action.get_response()
+    response, sub_string = api.get()
+    products = response['products']
     for product in products:
         if product['name'].find(sub_string) < 1:
             check_brand_list.append('-')
