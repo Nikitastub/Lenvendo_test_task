@@ -18,7 +18,7 @@ def app(request):
 
 @pytest.fixture()
 def api():
-    apifixture = ApiActionHelper(base_url='https://www.lenvendo.ru/api/js-test-task/')
+    apifixture = ApiActionHelper(base_url='https://www.lenvendo.ru/api/')
     return apifixture
 
 def pytest_generate_tests(metafunc):

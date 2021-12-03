@@ -5,9 +5,10 @@ class ApiActionHelper:
     def __init__(self, base_url):
         self.base_url = base_url
 
-    def get(self):
+    def get_js_test_task(self):
         payload = {'search': 'Huawei', 'sort_field': 'price'}
-        response = ((requests.get(url=self.base_url, params=payload)).json())
+        url = self.base_url + 'js-test-task/'
+        response = ((requests.get(url=url, params=payload)).json())
         sub_string = payload['search']
         return response, sub_string
 

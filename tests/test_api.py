@@ -2,7 +2,7 @@
 def test_api(api):
     check_brand_list = []
     price_list = []
-    response, sub_string = api.get()
+    response, sub_string = api.get_js_test_task()
     products = response['products']
     for product in products:
         if product['name'].find(sub_string) < 1:
