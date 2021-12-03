@@ -1,7 +1,7 @@
 
 def test_api(api):
     price_list = []
-    response, sub_string = api.get_js_test_task()
+    response, sub_string = api.get_js_test_task({'search': 'Huawei', 'sort_field': 'price'})
     products = response['products']
     for product in products:
         # checking "name" include sub_string
