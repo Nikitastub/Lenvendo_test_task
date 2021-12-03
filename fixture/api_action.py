@@ -8,12 +8,13 @@ class ApiActionHelper:
     def get_js_test_task(self, payload=None):
         url = self.base_url + 'js-test-task/'
         req = requests.get(url=url, params=payload)
-        assert '200' in str(req)
-        res = req.json()
-        if payload is not None:
-            sub_string = list(payload.values())[0]
-            return res, sub_string
+        if '200' in str(req):
+            res = req.json()
+            if (payload is not None) and ('search' in payload):
+                sub_string = payload['search']
+                return res, sub_string
+            else:
+                return res, None
         else:
-            return res, None
-
+            raise BaseException('Запрос неуспешен - {}'.format(req))
 
