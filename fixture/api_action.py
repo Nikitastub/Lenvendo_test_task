@@ -11,7 +11,7 @@ class ApiActionHelper:
         assert '200' in str(req)
         res = req.json()
         if payload is not None:
-            sub_string = payload['search']
+            sub_string = list(payload.values())[0]
             return res, sub_string
         else:
             return res, None
