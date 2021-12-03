@@ -5,8 +5,7 @@ def test_api(api):
     response, sub_string = api.get_js_test_task()
     products = response['products']
     for product in products:
-        if product['name'].find(sub_string) < 1:
-            check_brand_list.append('-')
+        assert sub_string in product['name']
         price_list.append(product['price'])
     # checking prices go from min to max
     assert price_list == sorted(price_list)
