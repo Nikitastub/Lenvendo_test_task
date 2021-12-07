@@ -10,14 +10,14 @@ def random_data(maxlen):
     random_email_from = "".join([random.choice(symbols) for i in range(random.randrange(1, maxlen))]) + '@' + 'mail.ru'
     random_email_to = "".join([random.choice(symbols) for i in range(random.randrange(1, maxlen))]) + '@' + 'mail.ru'
     return {
-        'name_from':random_name_from,
-        'email_from':random_email_from,
-        'name_to':random_name_to,
-        'email_to':random_email_to
+        'name':random_name_from,
+        'email':random_email_from,
+        'name1':random_name_to,
+        'email1':random_email_to
     }
 
 testdata = [
-    random_data(7) for i in range(3)
+    random_data(7) for i in range(2)
     ]
 
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
