@@ -1,21 +1,32 @@
 import re
+from fixture.locators import Locators
 
 class UiActionHelper():
 
     def __init__(self, app):
         self.app = app
 
-    def fill_form(self, name_id, name, email_id, email):
-
+    def fill_sender_form(self, name, email):
         wd = self.app.wd
-        name_from = wd.find_element_by_css_selector('#{}'.format(name_id))
-        name_from.click()
-        name_from.clear()
-        name_from.send_keys('{}'.format(name))
-        email_from = wd.find_element_by_css_selector('#{}'.format(email_id))
-        email_from.click()
-        email_from.clear()
-        email_from.send_keys('{}'.format(email))
+        sender_name = wd.find_element(*Locators.sender_name_field)
+        sender_name.click()
+        sender_name.clear()
+        sender_name.send_keys('{}'.format(name))
+        sender_email = wd.find_element(*Locators.sender_email_field)
+        sender_email.click()
+        sender_email.clear()
+        sender_email.send_keys('{}'.format(email))
+
+    def fill_addressee_form(self, name, email):
+        wd = self.app.wd
+        addressee_name = wd.find_element(*Locators.addressee_name_field)
+        addressee_name.click()
+        addressee_name.clear()
+        addressee_name.send_keys('{}'.format(name))
+        addressee_email = wd.find_element(*Locators.addressee_email_field)
+        addressee_email.click()
+        addressee_email.clear()
+        addressee_email.send_keys('{}'.format(email))
 
     def go_to_paying_page(self):
         wd = self.app.wd
