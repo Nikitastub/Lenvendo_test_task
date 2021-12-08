@@ -6,15 +6,20 @@ class ApiActionHelper:
         self.base_url = base_url
 
     def get_js_test_task(self, payload=None):
+        price_list = []
         url = self.base_url + 'js-test-task/'
-        req = requests.get(url=url, params=payload)
-        if '200' in str(req):
-            res = req.json()
-            if (payload is not None) and ('search' in payload):
-                sub_string = payload['search']
-                return res, sub_string
-            else:
-                return res, None
+        request = requests.get(url=url, params=payload)
+        response = request.json()
+        if '200' in str(request):
+            if payload is not None:
+                if 'search' in payload:
+                    sub_string = payload['search']
+                    for product in response['products']:
+                        assert sub_string in product['name']
+                if ('sort_field', 'price') in payload.items():
+                    for product in response['products']:
+                        price_list.append(product['price'])
+                    assert price_list == sorted(price_list)
         else:
-            raise BaseException('Запрос неуспешен - {}'.format(req))
+            raise BaseException('Bad request: {}.\nResponse body: {}'.format(request, response))
 

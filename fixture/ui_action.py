@@ -30,7 +30,7 @@ class UiActionHelper():
 
     def go_to_paying_page(self):
         wd = self.app.wd
-        wd.find_element_by_css_selector('button[type="submit"]').click()
+        wd.find_element(*Locators.paying_button).click()
 
     def bottom_scroll(self):
         wd = self.app.wd

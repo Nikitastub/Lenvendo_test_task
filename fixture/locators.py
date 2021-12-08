@@ -9,3 +9,5 @@ class Locators():
     addressee_name_field = (By.CSS_SELECTOR, "#name1")
     # поле ввода эл. почты получателя
     addressee_email_field = (By.CSS_SELECTOR, "#email1")
+    # кнопка перехода к оплате
+    paying_button = (By.CSS_SELECTOR, 'button[type="submit"]')
