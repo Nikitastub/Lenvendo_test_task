@@ -1,5 +1,5 @@
 pytest
-selemium
+selenium
 allure-pytest
 requests
 jsonpickle
