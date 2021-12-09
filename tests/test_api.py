@@ -1,8 +1,5 @@
 import pytest
 
-
-
-@pytest.mark.parametrize('payload', [{'search': 'Huawei', 'sort_field': 'price'}, {'search': 'Huawei'},
-                                      {'sort_field': 'price'}, None])
-def test_api(api, payload):
-    api.get_js_test_task(payload)
+@pytest.mark.parametrize(('search', 'sort_field'), [('Huawei', 'price')])
+def test_api(api, search, sort_field):
+    api.get_js_test_task(search=search, sort_field=sort_field)
